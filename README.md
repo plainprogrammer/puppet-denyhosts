@@ -1,23 +1,26 @@
-Blank Module
-============
+DenyHOSTS
+=========
 
-This is a blank module that serves as a starting point for new modules.
+This module allows for the installation and management of [DenyHOSTS](http://denyhosts.sourceforge.net).
+
+Platforms
+---------
+
+This module has been tested on the following platforms:
+
+* Ubuntu 12.04 LTS
 
 Requirements
 ------------
 
-> Describe the requirements for the module.
+This module has no external dependencies.
 
 Installation
 ------------
 
-> Describe how to install the module.
+  puppet module install readyproject/denyhosts
 
 Usage
 -----
 
 > Describe how to use the module.
-  
-To prepare this blank module for development the one thing you need to change
-is name of the folder `spec/fixtures/modules/module` to match the actual name
-of your module.
