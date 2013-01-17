@@ -103,19 +103,19 @@ class denyhosts($always_allow=[],
   }
 
   file { $allowed_hosts_config:
-    ensure => file,
-    owner  => 0,
-    group  => 0,
-    mode   => '0644',
+    ensure  => file,
+    owner   => 0,
+    group   => 0,
+    mode    => '0644',
     content => template("${module_name}/${allowed_hosts_config_tpl}"),
     require => Package[$pkg_name],
   }
 
   file { $denied_hosts_config:
-    ensure => file,
-    owner  => 0,
-    group  => 0,
-    mode   => '0644',
+    ensure  => file,
+    owner   => 0,
+    group   => 0,
+    mode    => '0644',
     content => template("${module_name}/${denied_hosts_config_tpl}"),
     require => Package[$pkg_name],
   }
@@ -126,6 +126,9 @@ class denyhosts($always_allow=[],
     name       => $svc_name,
     hasstatus  => true,
     hasrestart => true,
-    subscribe  => [ Package[$pkg_name], File[$config], File[$allowed_hosts_config], File[$denied_hosts_config] ],
+    subscribe  => [ Package[$pkg_name],
+                    File[$config],
+                    File[$allowed_hosts_config],
+                    File[$denied_hosts_config] ],
   }
 }
