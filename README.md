@@ -1,6 +1,8 @@
 DenyHOSTS
 =========
 
+[![Build Status](https://travis-ci.org/readyproject/puppet-denyhosts.png)](https://travis-ci.org/readyproject/puppet-denyhosts)
+
 This module allows for the installation and management of [DenyHOSTS](http://denyhosts.sourceforge.net).
 
 Platforms
