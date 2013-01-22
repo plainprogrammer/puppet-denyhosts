@@ -17,6 +17,10 @@ target_systems = {
     :ubuntu_1204_32 => {
         :box     => 'precise32',
         :box_url => 'http://files.vagrantup.com/precise32.box'
+    },
+    :gentoo_338_64 => {
+        :box     => 'gentoo338_64',
+        :box_url => 'http://dl.dropbox.com/u/1212791/gentoo-64-i686-3.3.8.box'
     }
 }
 
