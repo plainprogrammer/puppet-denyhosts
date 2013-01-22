@@ -27,7 +27,7 @@ This module has no external dependencies.
 Installation
 ------------
 
-  puppet module install readyproject/denyhosts
+  puppet module install plainprogrammer/denyhosts
 
 Usage
 -----
