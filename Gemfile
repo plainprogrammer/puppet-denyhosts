@@ -6,3 +6,5 @@ gem 'puppet', puppetversion
 
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper', '>= 0.1.0'
+
+gem 'vagrant'

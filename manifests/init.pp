@@ -6,8 +6,8 @@
 #   2013-01-17
 #
 #   Tested platforms:
-#    - Ubuntu 12.04 LTS
-#    - Ubuntu 10.04 LTS
+#    - Ubuntu 10.04 LTS (32 & 64)
+#    - Ubuntu 12.04 LTS (32 & 64)
 #
 # Parameters:
 #
