@@ -54,3 +54,17 @@ Whether to update the denyhosts package automatically or not.
 Automatically start denyhosts deamon on boot.
 
     $enable = true
+
+Contributing
+------------
+
+Contributing is easy, unless you're lazy.
+
+1. Create an Issue and get feedback
+2. Fork the project
+3. Branch and develop with tests
+4. Submit a Pull Request
+
+It is very important that your changes be tested, both via RSpec test and in reality by running via Vagrant. It is also
+very important that you don't try and code-fist the project. Keep your development focused on one particular feature or
+bug. Small and focused sets of changes are easier to accept as Pull Requests.
