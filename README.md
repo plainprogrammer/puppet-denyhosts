@@ -25,4 +25,32 @@ Installation
 Usage
 -----
 
-> Describe how to use the module.
+The easiest way to use this module is to declare a class and provide the desired options:
+
+    class { "denyhosts":
+        use_sync   => true,
+        autoupdate => false,
+    }
+
+Supported Parameters
+--------------------
+
+List of IP Addresses to always allow
+
+    $always_allow = ['123.0.1.24']
+
+List of IP Addresses to always deny
+
+    $always_deny = ['123.0.1.24']
+
+Whether to us the DenyHosts in synchronization mode
+
+    $use_sync = false
+
+Whether to update the denyhosts package automatically or not.
+
+    $autoupdate = false
+
+Automatically start denyhosts deamon on boot.
+
+    $enable = true
