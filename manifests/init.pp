@@ -7,6 +7,7 @@
 #
 #   Tested platforms:
 #    - Ubuntu 12.04 LTS
+#    - Ubuntu 10.04 LTS
 #
 # Parameters:
 #

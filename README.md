@@ -11,6 +11,7 @@ Platforms
 This module has been tested on the following platforms:
 
 * Ubuntu 12.04 LTS
+* Ubuntu 10.04 LTS
 
 Requirements
 ------------
