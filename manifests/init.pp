@@ -1,4 +1,4 @@
-# Class: ntp
+# Class: denyhosts
 #
 #   This module manages the denyhosts service.
 #
