@@ -13,15 +13,6 @@ describe 'denyhosts' do
       let(:facts) { { :osfamily => 'debian' } }
 
       it { should contain_service('denyhosts').with_name('denyhosts') }
-
-      #it 'should use the debian denyhosts servers by default' do
-      #  content = param_value(subject, 'file', '/etc/denyhosts.conf', 'content')
-      #  expected_lines = ['server 0.debian.pool.ntp.org iburst',
-      #                    'server 1.debian.pool.ntp.org iburst',
-      #                    'server 2.debian.pool.ntp.org iburst',
-      #                    'server 3.debian.pool.ntp.org iburst']
-      #  (content.split("\n") & expected_lines).should == expected_lines
-      #end
     end
 
     describe 'for operating system family unsupported' do
@@ -67,6 +58,28 @@ describe 'denyhosts' do
           subject.should contain_package('denyhosts').with_ensure('latest')
         end
       end
+    end
+  end
+
+  describe 'providing allowed hosts' do
+    let(:params) { { :always_allow => ['10.0.1.5', '10.0.2.8'] } }
+    let(:facts) { { :osfamily => 'Debian' } }
+    let(:content) { param_value(subject, 'file', '/etc/hosts.allow', 'content') }
+
+    it 'includes expected hosts in allowed hosts file' do
+      content.should match_regex(/10\.0\.1\.5/)
+      content.should match_regex(/10\.0\.2\.8/)
+    end
+  end
+
+  describe 'providing denied hosts' do
+    let(:params) { { :always_deny => ['10.0.1.5', '10.0.2.8'] } }
+    let(:facts) { { :osfamily => 'Debian' } }
+    let(:content) { param_value(subject, 'file', '/etc/hosts.deny', 'content') }
+
+    it 'includes expected hosts in denied hosts file' do
+      content.should match_regex(/10\.0\.1\.5/)
+      content.should match_regex(/10\.0\.2\.8/)
     end
   end
 
