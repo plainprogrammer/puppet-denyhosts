@@ -2,6 +2,10 @@
 # vi: set ft=ruby :
 
 target_systems = {
+    :ubuntu_1004_32 => {
+        :box     => 'lucid32',
+        :box_url => 'http://files.vagrantup.com/lucid32.box'
+    },
     :ubuntu_1004_64 => {
         :box     => 'lucid64',
         :box_url => 'http://files.vagrantup.com/lucid64.box'
@@ -9,6 +13,10 @@ target_systems = {
     :ubuntu_1204_64 => {
         :box     => 'precise64',
         :box_url => 'http://files.vagrantup.com/precise64.box'
+    },
+    :ubuntu_1204_32 => {
+        :box     => 'precise32',
+        :box_url => 'http://files.vagrantup.com/precise32.box'
     }
 }
 
