@@ -8,9 +8,16 @@ This module allows for the installation and management of [DenyHOSTS](http://den
 Platforms
 ---------
 
-This module has been tested on the following platforms:
+This module has been tested on the following target operating systems:
 
-* Ubuntu 12.04 LTS
+* Ubuntu 10.04 LTS (32 & 64)
+* Ubuntu 12.04 LTS (32 & 64)
+
+This modules has also been tested against the following versions of Puppet:
+
+* 3.0.2
+* 2.7.20
+* 2.6.17
 
 Requirements
 ------------
