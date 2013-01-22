@@ -74,14 +74,25 @@ class denyhosts($always_allow=[],
   case $::osfamily {
     Debian: {
       $supported                = true
-      $pkg_name                 = [ 'denyhosts' ]
+      $pkg_name                 = 'denyhosts'
       $svc_name                 = 'denyhosts'
       $config                   = '/etc/denyhosts.conf'
-      $config_tpl               = 'denyhosts.conf.debian.erb'
+      $config_tpl               = 'denyhosts.conf.erb'
       $allowed_hosts_config     = '/etc/hosts.allow'
-      $allowed_hosts_config_tpl = 'hosts.allow.debian.erb'
+      $allowed_hosts_config_tpl = 'hosts.allow.erb'
       $denied_hosts_config      = '/etc/hosts.deny'
-      $denied_hosts_config_tpl  = 'hosts.deny.debian.erb'
+      $denied_hosts_config_tpl  = 'hosts.deny.erb'
+    }
+    Redhat: {
+      $supported                = true
+      $pkg_name                 = 'denyhosts'
+      $svc_name                 = 'denyhosts'
+      $config                   = '/etc/denyhosts.conf'
+      $config_tpl               = 'denyhosts.conf.erb'
+      $allowed_hosts_config     = '/etc/hosts.allow'
+      $allowed_hosts_config_tpl = 'hosts.allow.erb'
+      $denied_hosts_config      = '/etc/hosts.deny'
+      $denied_hosts_config_tpl  = 'hosts.deny.erb'
     }
     default: {
       fail("The ${module_name} module is not supported on ${::osfamily} based systems")

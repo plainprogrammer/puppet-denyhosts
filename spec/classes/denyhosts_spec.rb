@@ -8,11 +8,13 @@ describe 'denyhosts' do
   end
 
   describe 'test platform specific resources' do
-    describe 'for operating system family Debian' do
-      let(:params) {{}}
-      let(:facts) { { :osfamily => 'debian' } }
+    ['Debian', 'Redhat'].each do |osfamily|
+      describe 'for operating system family Debian' do
+        let(:params) {{}}
+        let(:facts) { { :osfamily => osfamily } }
 
-      it { should contain_service('denyhosts').with_name('denyhosts') }
+        it { should contain_service('denyhosts').with_name('denyhosts') }
+      end
     end
 
     describe 'for operating system family unsupported' do
