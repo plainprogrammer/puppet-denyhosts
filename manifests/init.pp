@@ -80,9 +80,7 @@ class denyhosts($always_allow=[],
       $config                   = '/etc/denyhosts.conf'
       $config_tpl               = 'denyhosts.conf.debian.erb'
       $allowed_hosts_config     = '/etc/hosts.allow'
-      $allowed_hosts_config_tpl = 'hosts.allow.debian.erb'
       $denied_hosts_config      = '/etc/hosts.deny'
-      $denied_hosts_config_tpl  = 'hosts.deny.debian.erb'
     }
     default: {
       fail("The ${module_name} module is not supported on ${::osfamily} based systems")
@@ -95,30 +93,52 @@ class denyhosts($always_allow=[],
   }
 
   file { $config:
-    ensure  => file,
-    owner   => 0,
-    group   => 0,
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
     mode    => '0644',
     content => template("${module_name}/${config_tpl}"),
     require => Package[$pkg_name],
   }
 
   file { $allowed_hosts_config:
-    ensure  => file,
-    owner   => 0,
-    group   => 0,
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/${allowed_hosts_config_tpl}"),
     require => Package[$pkg_name],
   }
 
   file { $denied_hosts_config:
-    ensure  => file,
-    owner   => 0,
-    group   => 0,
+    ensure  => 'file',
+    owner   => 'root',
+    group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/${denied_hosts_config_tpl}"),
     require => Package[$pkg_name],
+  }
+
+  denied_host { $always_deny:
+    ensure  => 'present',
+    service => 'ALL',
+    require => File[$denied_hosts_config]
+  }
+
+  denied_host { $always_allow:
+    ensure  => 'absent',
+    service => 'ALL',
+    require => File[$denied_hosts_config]
+  }
+
+  allowed_host { $always_allow:
+    ensure  => 'present',
+    service => 'ALL',
+    require => File[$allowed_hosts_config]
+  }
+
+  allowed_host { $always_deny:
+    ensure  => 'absent',
+    service => 'ALL',
+    require => File[$allowed_hosts_config]
   }
 
   service { 'denyhosts':
@@ -127,8 +147,8 @@ class denyhosts($always_allow=[],
     name       => $svc_name,
     hasstatus  => true,
     hasrestart => true,
-    subscribe  => [ Package[$pkg_name],
-                    File[$config],
+    require    => Package[$pkg_name],
+    subscribe  => [ File[$config],
                     File[$allowed_hosts_config],
                     File[$denied_hosts_config] ],
   }
