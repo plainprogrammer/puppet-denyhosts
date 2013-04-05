@@ -1,5 +1,5 @@
 name    'readyproject-denyhosts'
-version '0.3.0'
+version '0.4.0'
 source 'git://github.com/readyproject/puppet-denyhosts'
 author 'The Ready Project'
 license 'MIT'
