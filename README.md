@@ -15,6 +15,7 @@ This module has been tested on the following target operating systems:
 
 This modules has also been tested against the following versions of Puppet:
 
+* 3.1.1
 * 3.0.2
 * 2.7.20
 * 2.6.17
@@ -61,6 +62,10 @@ Whether to update the denyhosts package automatically or not.
 Automatically start denyhosts deamon on boot.
 
     $enable = true
+    
+Specify email to send notifications to.
+
+    $notification_email = 'admin@example.org'
 
 Contributing
 ------------
