@@ -45,7 +45,8 @@ class denyhosts($always_allow=[],
                 $use_sync=false,
                 $autoupdate=false,
                 $enable=true,
-                $ensure='running'
+                $ensure='running',
+                $notification_email=undef
 ) {
 
   if ! ($ensure in [ 'running', 'stopped' ]) {
@@ -70,6 +71,13 @@ class denyhosts($always_allow=[],
     # Do nothing special
   } else {
     fail('use_sync parameter must be true or false')
+  }
+
+  if $notification_email == undef {
+    # Do Nothing
+  } else {
+    $smtp_from = "DenyHosts Notice <denyhosts@${::fqdn}>"
+    $smtp_subject = 'DenyHosts Notice'
   }
 
   case $::osfamily {

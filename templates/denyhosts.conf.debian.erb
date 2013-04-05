@@ -19,14 +19,16 @@ SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS = yes
 
 HOSTNAME_LOOKUP = yes
 
-ADMIN_EMAIL       = jamest@thereadyproject.com
+<% unless @notification_email.nil? -%>
+ADMIN_EMAIL       = <%= @notification_email %>
 SMTP_HOST         = localhost
 SMTP_PORT         = 25
 #SMTP_USERNAME    = foo
 #SMTP_PASSWORD    = bar
-SMTP_FROM         = DenyHosts Report <denyhosts@thereadyproject.com>
-SMTP_SUBJECT      = DenyHosts Report
+SMTP_FROM         = <%= @smtp_from %>
+SMTP_SUBJECT      = <%= @smtp_subject %>
 SMTP_DATE_FORMAT = %a, %d %b %Y %H:%M:%S %z
+<% end -%>
 
 SYSLOG_REPORT = yes
 

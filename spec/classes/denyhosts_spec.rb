@@ -90,4 +90,13 @@ describe 'denyhosts' do
     it { should contain_file('/etc/denyhosts.conf').with_content(/SYNC_DOWNLOAD_THRESHOLD/) }
     it { should contain_file('/etc/denyhosts.conf').with_content(/SYNC_DOWNLOAD_RESILIENCY/) }
   end
+  
+  describe 'enabling email notification' do
+    let(:params) { { :notification_email => 'admin@example.org' } }
+    let(:facts) { { :osfamily => 'Debian', :fqdn => 'host.example.org' } }
+    
+    it { should contain_file('/etc/denyhosts.conf').with_content(/ADMIN_EMAIL\s+=\s+admin@example\.org/) }
+    it { should contain_file('/etc/denyhosts.conf').with_content(/SMTP_FROM\s+=\s+DenyHosts Notice <denyhosts@host\.example\.org>/) }
+    it { should contain_file('/etc/denyhosts.conf').with_content(/SMTP_SUBJECT\s+=\s+DenyHosts Notice/) }
+  end
 end
