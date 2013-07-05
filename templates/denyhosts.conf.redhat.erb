@@ -1,0 +1,62 @@
+# /etc/denyhosts.conf, configuration for denyhosts; see ntp.conf(5) for help
+
+SECURE_LOG  = /var/log/secure
+HOSTS_DENY  = /etc/hosts.deny
+LOCK_FILE   = /var/lock/subsys/denyhosts
+WORK_DIR    = /var/lib/denyhosts
+
+PURGE_DENY      = 7d
+PURGE_THRESHOLD = 2
+
+BLOCK_SERVICE = sshd
+
+DENY_THRESHOLD_INVALID    = 3
+DENY_THRESHOLD_VALID      = 5
+DENY_THRESHOLD_ROOT       = 3
+DENY_THRESHOLD_RESTRICTED = 3
+
+SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS = yes
+
+HOSTNAME_LOOKUP = yes
+
+<% unless @notification_email.nil? -%>
+ADMIN_EMAIL       = <%= @notification_email %>
+SMTP_HOST         = localhost
+SMTP_PORT         = 25
+#SMTP_USERNAME    = foo
+#SMTP_PASSWORD    = bar
+SMTP_FROM         = <%= @smtp_from %>
+SMTP_SUBJECT      = <%= @smtp_subject %>
+SMTP_DATE_FORMAT = %a, %d %b %Y %H:%M:%S %z
+<% end -%>
+
+SYSLOG_REPORT = yes
+
+ALLOWED_HOSTS_HOSTNAME_LOOKUP = yes
+
+AGE_RESET_VALID       = 7d
+AGE_RESET_ROOT        = 21d
+AGE_RESET_RESTRICTED  = 21d
+AGE_RESET_INVALID     = 7d
+
+RESET_ON_SUCCESS = yes
+
+#PLUGIN_DENY  = /usr/bin/true
+#PLUGIN_PURGE = /usr/bin/true
+
+#USERDEF_FAILED_ENTRY_REGEX=
+
+DAEMON_LOG                  = /var/log/denyhosts
+#DAEMON_LOG_TIME_FORMAT     = %b %d %H:%M:%S
+#DAEMON_LOG_MESSAGE_FORMAT  = %(asctime)s - %(name)-12s: %(levelname)-8s %(message)s
+DAEMON_SLEEP                = 30s
+DAEMON_PURGE                = 1d
+
+<% if @use_sync %>
+SYNC_SERVER               = http://xmlrpc.denyhosts.net:9911
+SYNC_INTERVAL             = <%= @sync_interval %>
+SYNC_UPLOAD               = <%= @sync_upload %>
+SYNC_DOWNLOAD             = <%= @sync_download %>
+SYNC_DOWNLOAD_THRESHOLD   = <%= @sync_download_threshold %>
+SYNC_DOWNLOAD_RESILIENCY  = <%= @sync_download_resiliency %>
+<% end %>
