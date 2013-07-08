@@ -81,6 +81,15 @@ class denyhosts($always_allow=[],
   }
 
   case $::osfamily {
+    RedHat: {
+      $supported                = true
+      $pkg_name                 = [ 'denyhosts' ]
+      $svc_name                 = 'denyhosts'
+      $config                   = '/etc/denyhosts.conf'
+      $config_tpl               = 'denyhosts.conf.redhat.erb'
+      $allowed_hosts_config     = '/etc/hosts.allow'
+      $denied_hosts_config      = '/etc/hosts.deny'
+    }
     Debian: {
       $supported                = true
       $pkg_name                 = [ 'denyhosts' ]
